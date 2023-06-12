@@ -1,0 +1,506 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "forum API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/users" : {
+            "post" : {
+                "summary" : "End point para registrar usuario",
+                "description" : "Para crear un usario tendras que usar tu correo y proporcionar una contraseña valida",
+                "tags" : ["Users"],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/register"
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "El usuario fue creado satisfactoriamente"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            }
+        },
+        "/users/login" : {
+            "post" : {
+                "summary" : "End point para logear usuario",
+                "description" : "Para iniciar sesión tendrás que usar tu correo y proporcionar una contraseña valida",
+                "tags" : ["Users"],
+                "requestBody" : {
+                    "required": true,
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "$ref" : "#/components/schemas/login"
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200" : {
+                        "description" : "Ok"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            }
+        },
+        "/users/:id" : {
+            "put" : {
+                "summary" : "End point para actualizar usuario",
+                "description" : "Para crear un usario tendras que usar tu correo y proporcionar una contraseña valida",
+                "tags" : ["Users"],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" :{
+                                "type" : "object",
+                                "properties" : {
+                                    "firstName" : {
+                                        "type" : "string",
+                                        "example" : "Miguel"
+                                    },
+                                    "lastName" : {
+                                        "type" : "string",
+                                        "example" : "Manzanera"
+                                    },
+                                    "phone" : {
+                                        "type" : "string",
+                                        "example" : "32222222"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "El usuario fue creado satisfactoriamente"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            },
+            "delete" : {
+                "summary" : "End point para borrar usuario",
+                "description" : "Para borrar un usuario debes estar loggeado",
+                "tags" : ["Users"],
+                "responses" : {
+                    "204" : {
+                        "description" : "El usuario fue borrado satisfactoriamente"
+                    }
+                }
+            }
+        },
+        "/products" : {
+            "post" : {
+                "summary" : "End point para crear producto",
+                "description" : "Para crear un producto tendras que estar loggeado",
+                "tags" : ["Products"],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "title" : {
+                                        "type" : "string",
+                                        "example" : "iPhone 14"
+                                    },
+                                    "description" : {
+                                        "type" : "string",
+                                        "example" : "A phone"
+                                    },
+                                    "brand" : {
+                                        "type" : "string",
+                                        "example" : "apple"
+                                    },
+                                    "price" : {
+                                        "type" : "integer",
+                                        "example" : "1000"
+                                    },
+                                    "categoryId" : {
+                                        "type" : "integer",
+                                        "example" : "1"
+                                    },
+                                    "user0Id" : {
+                                        "type" : "integer",
+                                        "example" : "1"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "El producto fue creado satisfactoriamente"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            },
+            "get" : {
+                "summary" : "End point para obtener productos",
+                "description" : "Para crearver todos los productos creadcos",
+                "tags" : ["Products"],
+                "responses" : {
+                    "200" : {
+                        "description" : "ok"
+                    }
+                }
+            }
+        },
+        "/products/:id" : {
+            "put" : {
+                "summary" : "End point para edit producto",
+                "description" : "Para editar un producto tendras que estar loggeado",
+                "tags" : ["Products"],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "title" : {
+                                        "type" : "string",
+                                        "example" : "iPhone 14"
+                                    },
+                                    "description" : {
+                                        "type" : "string",
+                                        "example" : "A phone"
+                                    },
+                                    "brand" : {
+                                        "type" : "string",
+                                        "example" : "apple"
+                                    },
+                                    "price" : {
+                                        "type" : "integer",
+                                        "example" : "1000"
+                                    },
+                                    "categoryId" : {
+                                        "type" : "integer",
+                                        "example" : "1"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "El producto fue creado satisfactoriamente"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            },
+            "get" : {
+                "summary" : "End point para obtener un producto",
+                "description" : "Para ver un producto creado",
+                "tags" : ["Products"],
+                "responses" : {
+                    "200" : {
+                        "description" : "ok"
+                    }
+                }
+            },
+            "delete" : {
+                "summary" : "End point para borrar un producto",
+                "description" : "Para borrar un producto creado",
+                "tags" : ["Products"],
+                "responses" : {
+                    "204" : {
+                        "description" : "Objeto eliminado correctamente"
+                    }
+                }
+            }
+        },
+        "/products/:productId/images" : {
+            "post" : {
+                "summary" : "End point para poner imagen del producto",
+                "description" : "Para poner una imagen del producto tendras que estar loggeado",
+                "tags" : ["Products"],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "array",
+                                "properties" : ["imageId"],
+                                "example": [1]
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "El producto fue creado satisfactoriamente"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            }
+        },
+        "/categories" : {
+            "post" : {
+                "summary" : "End point para crear una categoria",
+                "description" : "Para crear una categoria tendras que estar loggeado",
+                "tags" : ["Categories"],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "name" : {
+                                        "type" : "string",
+                                        "example" : "Tech"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "La categoria fue creado satisfactoriamente"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            },
+            "get" : {
+                "summary" : "End point para obtener categorias",
+                "description" : "Para ver todos los productos creados",
+                "tags" : ["Categories"],
+                "responses" : {
+                    "200" : {
+                        "description" : "ok"
+                    }
+                }
+            }
+        },
+        "/categories/:id" : {
+            "put" : {
+                "summary" : "End point para editar categoria",
+                "description" : "Para editar una categoria tendras que estar loggeado",
+                "tags" : ["Categories"],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "name" : {
+                                        "type" : "string",
+                                        "example" : "Tech"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "La categoria fue creada satisfactoriamente"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            },
+            "get" : {
+                "summary" : "End point para obtener una categoria",
+                "description" : "Para ver una categoria creado",
+                "tags" : ["Categories"],
+                "responses" : {
+                    "200" : {
+                        "description" : "ok"
+                    }
+                }
+            },
+            "delete" : {
+                "summary" : "End point para borrar una categoria",
+                "description" : "Para borrar una categoria creado",
+                "tags" : ["Categories"],
+                "responses" : {
+                    "204" : {
+                        "description" : "Categoria eliminada correctamente"
+                    }
+                }
+            }
+        },
+        "/cart" : {
+            "post" : {
+                "summary" : "End point para crear un carrito",
+                "description" : "Para crear un carrito tendras que estar loggeado",
+                "tags" : ["Cart"],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "quantity" : {
+                                        "type" : "integer",
+                                        "example" : "1"
+                                    },
+                                    "userId" : {
+                                        "type" : "integer",
+                                        "example" : "1"
+                                    },
+                                    "productId" : {
+                                        "type" : "integer",
+                                        "example" : "1"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "El carrito fue creado satisfactoriamente"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            }
+        },
+        "/cart/:id" : {
+            "delete" : {
+                "summary" : "End point para eliminar un carrito",
+                "description" : "Para eliminar un carrito tendras que estar loggeado",
+                "tags" : ["Cart"],
+                "responses" : {
+                    "204" : {
+                        "description" : "El carrito fue eliminado satisfactoriamente"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            },
+            "get" : {
+                "summary" : "End point para obtener carrito",
+                "description" : "Para ver el carrito",
+                "tags" : ["Cart"],
+                "responses" : {
+                    "200" : {
+                        "description" : "ok"
+                    }
+                }
+            }
+        },
+        "/purchases" : {
+            "post" : {
+                "summary" : "End point para crear un parchase",
+                "description" : "Para crear un purchase tendras que estar loggeado",
+                "tags" : ["Purchases"],
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "quantity" : {
+                                        "type" : "integer",
+                                        "example" : "1"
+                                    },
+                                    "userId" : {
+                                        "type" : "integer",
+                                        "example" : "1"
+                                    },
+                                    "productId" : {
+                                        "type" : "integer",
+                                        "example" : "1"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description" : "El purchase fue creado satisfactoriamente"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            },
+            "get" : {
+                "summary" : "End point para ver todos los parchases",
+                "description" : "Para ver todos los purchases tendras que estar loggeado",
+                "tags" : ["Purchases"],
+                "responses" : {
+                    "200" : {
+                        "description" : "Ok"
+                    },
+                    "400" : {
+                        "description" : "Faltan propiedades"
+                    }
+                }
+            }
+        }
+    },
+    "components" : {
+        "schemas" : {
+            "register" : {
+                "type" : "object",
+                "properties" : {
+                    "firstName" : {
+                        "type" : "string",
+                        "example" : "Miguel"
+                    },
+                    "lastName" : {
+                        "type" : "string",
+                        "example" : "Manzanera"
+                    },
+                    "email" : {
+                        "type" : "string",
+                        "example" : "Miguel.manza1999@gmail.com"
+                    },
+                    "password" : {
+                        "type" : "string",
+                        "example" : "12345679"
+                    },
+                    "phone" : {
+                        "type" : "string",
+                        "example" : "32222222"
+                    }
+                }
+            },
+            "login" : {
+                "type" : "object",
+                "properties" : {
+                    "email" : {
+                        "type" : "string",
+                        "example" : "Miguel.manza1999@gmail.com"
+                    },
+                    "password" : {
+                        "type" : "string",
+                        "example" : "12345679"
+                    }
+                }
+            }
+        }
+    }
+}
